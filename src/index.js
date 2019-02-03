@@ -1,5 +1,5 @@
-const debug = require('debug');
-const app = require('./app');
+import debug from 'debug';
+import app from "./app";
 
 const logger = debug('log');
 
