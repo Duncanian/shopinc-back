@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start:dev": "DEBUG=log nodemon src/index.js"
+    "start:dev": "DEBUG=log nodemon --exec babel-node src/index.js"
   },
   "repository": {
     "type": "git",
