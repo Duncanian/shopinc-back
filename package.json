@@ -4,7 +4,7 @@
   "description": "This an api for shopinc",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "node_modules/.bin/jest --no-cache  --detectOpenHandles --runInBand --forceExit",
     "start:dev": "DEBUG=log nodemon --exec babel-node src/index.js",
     "lint": "node_modules/.bin/eslint src/"
   },
@@ -39,6 +39,30 @@
     "babel-preset-stage-2": "^6.24.1",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.0.0",
+    "jest-cli": "^24.0.0",
+    "sequelize-test-helpers": "^1.0.7",
+    "supertest": "^3.4.2"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!node_modules/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/database/migrations",
+      "<rootDir>/src/database/seeders",
+      "<rootDir>/src/database/models/index.js"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov"
+    ]
+  },
+  "engines": {
+    "yarn": "1.13.x"
   }
 }
