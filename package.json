@@ -6,7 +6,11 @@
   "scripts": {
     "test": "node_modules/.bin/jest --no-cache  --detectOpenHandles --runInBand --forceExit",
     "start:dev": "DEBUG=log nodemon --exec babel-node src/index.js",
-    "lint": "node_modules/.bin/eslint src/"
+    "lint": "node_modules/.bin/eslint src/",
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:rollmigrate": "yarn db:rollback && yarn db:migrate && yarn db:seed"
   },
   "repository": {
     "type": "git",
@@ -63,6 +67,6 @@
     ]
   },
   "engines": {
-    "yarn": "1.1x.x"
+    "yarn": "1.12.x"
   }
 }
