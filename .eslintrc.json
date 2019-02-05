@@ -6,6 +6,13 @@
   },
   "extends": "airbnb-base",
   "rules": {
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "implicit-arrow-linebreak": 0,
+    "consistent-return": 0,
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
+    "eol-last": ["error", "always"]
   }
 }
