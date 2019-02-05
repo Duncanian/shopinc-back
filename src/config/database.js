@@ -1,4 +1,4 @@
-const config = require('./config');
+import config from "./config";
 
 const defaultConfig = {
   database: config.database,
@@ -13,7 +13,8 @@ const database = {
     ...defaultConfig,
   },
   test: {
-    ...defaultConfig, database: 'test_db',
+    ...defaultConfig,
+    database: "test_db",
   },
   production: {
     ...defaultConfig,
