@@ -35,7 +35,9 @@
     "pg": "^7.8.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.42.0",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -67,6 +69,6 @@
     ]
   },
   "engines": {
-    "yarn": "1.12.x"
+    "yarn": "1.13.x"
   }
 }

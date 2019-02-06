@@ -1,0 +1,29 @@
+swagger: "2.0"
+info:
+    title: Shopinc API documentation
+    description: This is an API that enables Shopinc customers to check for products that are being sold.
+    versions: 1.0.0
+
+servers:
+  - url: {protocol}://127.0.0.1:{port}
+    description: Development server (uses test data)
+    variables:
+      port:
+        enum:
+          - '4000'
+          - '8000'
+        default: '4000'
+      protocol:
+        enum:
+          - 'http'
+          - 'https'
+        default: 'http'
+
+consumes:
+  - application/json
+
+schemes:
+  - http
+  - https
+
+basePath: /api/v1
