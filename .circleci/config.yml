@@ -7,7 +7,7 @@ version: 2
 
 defaults: &defaults
   docker:
-    - image: circleci/node:carbon
+    - image: circleci/node:lts-jessie
       environment:
         NODE_ENV: test
         CC_TEST_REPORTER_ID: 909463a4169f3d63aad5fd2228752d73cedb0173b6f10303f280ca0b48ef7ce5
