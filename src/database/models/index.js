@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 
-import env from '../../config/config';
+import envConfig from '../../config/config';
 import dbConfig from '../../config/database';
 
-const envDbConfig = dbConfig[env];
+const envDbConfig = dbConfig[envConfig.env];
 const db = {};
 const basename = path.basename(__filename);
 const sequelize = new Sequelize(envDbConfig.database, envDbConfig.username, envDbConfig.password, {
