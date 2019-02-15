@@ -10,4 +10,10 @@ Router.post(
   AuthController.RegisterUser,
 );
 
+Router.post(
+  '/signin',
+  UserValidators.validateSignin,
+  AuthController.LoginUser,
+);
+
 export default Router;
