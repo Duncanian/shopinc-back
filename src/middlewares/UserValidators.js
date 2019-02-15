@@ -1,5 +1,6 @@
 import models from '../database/models';
 import reqResponses from '../helpers/Responses';
+import checkPass from '../helpers/Encrypt';
 
 let message;
 
@@ -34,6 +35,36 @@ class AuthValidator {
       });
       if (emailExists) {
         message = `Sorry, a user with the email ${email} already exists`;
+        return reqResponses.handleError(message, 400, res);
+      }
+      next();
+    } catch (error) {
+      return reqResponses.handleError(error.toString(), 500, res);
+    }
+  }
+
+  static async validateSignin(req, res, next) {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        message = 'Kindly enter both email and password fields';
+        return reqResponses.handleError(message, 400, res);
+      }
+
+      const passExists = await models.User.findOne({
+        where: { email },
+      });
+
+      if (passExists === null) {
+        message = 'Sorry, you don\'t have an account. Kindly sign up';
+        return reqResponses.handleError(message, 400, res);
+      }
+
+      const checkedPass = checkPass.validPassword(password, passExists.password);
+
+      if (!checkedPass) {
+        message = 'Sorry, incorrect password!';
         return reqResponses.handleError(message, 400, res);
       }
       next();

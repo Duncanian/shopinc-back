@@ -19,6 +19,25 @@ class AuthController {
       reqResponses.handleError(error.toString(), 500, res);
     }
   }
+
+  static async LoginUser(req, res) {
+    try {
+      const { email } = req.body;
+      const loggedInUser = await models.User.findOne({
+        where: { email },
+        attributes: [
+          'id',
+          'username',
+          'email',
+        ],
+      });
+
+      const message = [201, 'Login successful!', true];
+      reqResponses.handleSuccess(res, message, loggedInUser);
+    } catch (error) {
+      return reqResponses.handleError(error.toString(), 500, res);
+    }
+  }
 }
 
 export default AuthController;
