@@ -4,8 +4,9 @@
   "description": "This an api for shopinc",
   "main": "index.js",
   "scripts": {
+    "pretest": "NODE_ENV=test yarn db:migrate",
     "test": "node_modules/.bin/jest --no-cache  --detectOpenHandles --runInBand --forceExit",
-    "start:dev": "DEBUG=log nodemon --exec babel-node src/index.js",
+    "start:dev": "NODE_ENV=development DEBUG=log nodemon --exec babel-node src/index.js",
     "lint": "node_modules/.bin/eslint src/",
     "db:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/Duncanian/shopinc-back#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -41,12 +43,14 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.2.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.0.0",
     "jest-cli": "^24.0.0",
     "sequelize-test-helpers": "^1.0.7",
+    "sinon": "^7.2.3",
     "supertest": "^3.4.2"
   },
   "jest": {
@@ -67,6 +71,6 @@
     ]
   },
   "engines": {
-    "yarn": "1.12.x"
+    "yarn": "1.13.x"
   }
 }

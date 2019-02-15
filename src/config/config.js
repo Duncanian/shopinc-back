@@ -1,20 +1,18 @@
-import dotenv from 'dotenv';
-import joi from 'joi';
-
-dotenv.config();
+require('dotenv').config();
+const joi = require('joi');
 
 const envVarsSchema = joi
   .object({
-    port: joi.number().default(8000),
-    database: joi.string().required(),
-    username: joi.string().required(),
-    databaseDialect: joi.string().default('postgres'),
-    env: joi
+    PORT: joi.number().default(8000),
+    DATABASE: joi.string().required(),
+    DATABASE_USER: joi.string().required(),
+    DATABASE_DIALECT: joi.string().default('postgres'),
+    NODE_ENV: joi
       .string()
       .allow(['development', 'production', 'test', 'staging'])
       .required(),
-    password: joi.string().default(null),
-    host: joi.string().required(),
+    PASSWORD: joi.string().default(null),
+    HOST: joi.string().required(),
   })
   .unknown()
   .required();
@@ -35,4 +33,4 @@ const config = {
   host: envVars.HOST,
 };
 
-export default config;
+module.exports = config;
