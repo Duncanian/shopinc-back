@@ -48,4 +48,22 @@ export const userExist = [
   },
 ];
 
+export const userLogin = {
+  user1: {
+    email: 'test@test.co.ke',
+    password: 'Aa123!!!',
+  },
+  user2: {
+    email: 'test@test.com',
+    password: 'Aa123!',
+  },
+  user3: {
+    email: 'test@test.com',
+  },
+  user4: {
+    email: 'test@test.com',
+    password: 'Aa123!!!',
+  },
+};
+
 export default user;
