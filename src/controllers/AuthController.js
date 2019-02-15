@@ -1,6 +1,7 @@
 import models from '../database/models';
 import reqResponses from '../helpers/Responses';
 import encPass from '../helpers/Encrypt';
+import genToken from '../helpers/Authenticate';
 
 class AuthController {
   static async RegisterUser(req, res) {
@@ -13,8 +14,19 @@ class AuthController {
         password: hashedPass,
       });
 
+      const token = genToken.generateToken({
+        id: registeredUser.id,
+        email: registeredUser.email,
+        username: registeredUser.username,
+      });
+
       const message = [201, 'User created successfully', true];
-      reqResponses.handleSuccess(res, message, registeredUser);
+      return res.status(message[0]).json({
+        success: message[2],
+        message: message[1],
+        user: registeredUser,
+        token,
+      });
     } catch (error) {
       reqResponses.handleError(error.toString(), 500, res);
     }
@@ -32,8 +44,19 @@ class AuthController {
         ],
       });
 
+      const token = genToken.generateToken({
+        id: loggedInUser.id,
+        email: loggedInUser.email,
+        username: loggedInUser.username,
+      });
+
       const message = [201, 'Login successful!', true];
-      reqResponses.handleSuccess(res, message, loggedInUser);
+      return res.status(message[0]).json({
+        success: message[2],
+        message: message[1],
+        user: loggedInUser,
+        token,
+      });
     } catch (error) {
       return reqResponses.handleError(error.toString(), 500, res);
     }

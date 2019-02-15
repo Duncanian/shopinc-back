@@ -119,6 +119,8 @@ describe('Sign up user', () => {
       .end((err, res) => {
         expect(res.body.success).toBeTruthy();
         expect(res.body.message).toEqual('User created successfully');
+        expect(res.body.user.username).toEqual('tester');
+        expect(typeof res.body.token === 'string').toBe(true);
         if (err) return done();
         done();
       });
@@ -185,18 +187,8 @@ describe('Test login functionality', () => {
       .end((err, res) => {
         expect(res.body.success).toEqual(true);
         expect(res.body.message).toEqual('Login successful!');
-        if (err) return done();
-        done();
-      });
-  });
-
-  it('Should check for internal server error', (done) => {
-    request(app)
-      .post('/api/v1/signin')
-      .set('Content-Type', 'application/json')
-      .expect(500)
-      .end((err, res) => {
-        expect(res.body.success).toEqual(false);
+        expect(res.body.user.username).toEqual('tester');
+        expect(typeof res.body.token === 'string').toBe(true);
         if (err) return done();
         done();
       });
