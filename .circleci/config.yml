@@ -4,6 +4,17 @@
 #
 version: 2
 # Configure db here
+machine:
+  environment:
+    # Add the Postgres 9.6 binaries to the path.
+    PATH: /usr/lib/postgresql/11.1/bin/:$PATH
+
+  pre:
+    # Start Postgres 9.6.
+    - sudo service postgresql start 11.1
+
+    # Create a new test database.
+    - sudo -u postgres psql -p 5432 -c "create database test_db;"
 
 defaults: &defaults
   docker:
@@ -13,6 +24,9 @@ defaults: &defaults
         CC_TEST_REPORTER_ID: 909463a4169f3d63aad5fd2228752d73cedb0173b6f10303f280ca0b48ef7ce5
     - image: circleci/postgres:11.1-alpine
       environment:
+        DATABASE: test_db
+        DATABASE_USER: root
+        HOST: localhost
   working_directory: ~/shopinc-back
 
 install_npm_packages: &install_npm_packages
