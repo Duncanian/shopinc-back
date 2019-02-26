@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 
-import envConfig from '../../config/config';
+import { env } from '../../config/config';
 import dbConfig from '../../config/database';
 
-const envDbConfig = dbConfig[envConfig.env];
+const envDbConfig = dbConfig[env];
 const db = {};
 const basename = path.basename(__filename);
 const sequelize = new Sequelize(envDbConfig.database, envDbConfig.username, envDbConfig.password, {
@@ -29,4 +29,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export default db;
+module.exports = db;
