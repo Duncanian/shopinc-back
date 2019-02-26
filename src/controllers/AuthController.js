@@ -14,6 +14,10 @@ class AuthController {
         password: hashedPass,
       });
 
+      await models.Profile.create({
+        userId: registeredUser.id,
+      });
+
       const token = genToken.generateToken({
         id: registeredUser.id,
         email: registeredUser.email,
