@@ -17,5 +17,13 @@ export default (sequelize, DataTypes) => {
   {
     tableName: 'users',
   });
+
+  User.associate = (models) => {
+    User.hasOne(models.Profile, {
+      foreignKey: 'userId',
+      as: 'userProfile',
+    });
+  };
+
   return User;
 };
